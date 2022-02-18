@@ -14,6 +14,13 @@ router.get('/', (req, res) => {
         })
 })
 
+router.get('/:id', (req, res) => {
+    Projects.getById(req.params.id)
+        .then(project => {
+            res.json(project);
+        })
+})
+
 router.post('/', (req, res) => {
     const project = req.body;
     Projects.add(project)
