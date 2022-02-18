@@ -8,5 +8,5 @@ const tasks = [
 exports.tasks = tasks;
 
 exports.seed = function (knex) {
-  return knex('projects').insert(tasks)
+  return knex('tasks').insert(tasks)
 }

@@ -7,5 +7,5 @@ const resources = [
 exports.resources = resources;
 
 exports.seed = function (knex) {
-  return knex('projects').insert(resources)
+  return knex('resources').insert(resources)
 }
