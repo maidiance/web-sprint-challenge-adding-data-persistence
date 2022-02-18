@@ -10,8 +10,8 @@ const server = express();
 server.use(helmet());
 server.use(express.json());
 server.use('/api/resource', resourceRouter);
-server.use('/api/project', projectRouter);
-server.use('/api/task', taskRouter);
+server.use('/api/projects', projectRouter);
+server.use('/api/tasks', taskRouter);
 
 server.use((err, req, res, next) => { // eslint-disable-line
   res.status(500).json({
