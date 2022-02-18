@@ -21,7 +21,8 @@ router.post('/', (req, res) => {
         .then(posted => {
             res.status(201).json(posted);
         })
-        .catch(() => {
+        .catch((err) => {
+            console.log(err);
             res.status(500).json({message: 'could not post resource'});
         })
 })

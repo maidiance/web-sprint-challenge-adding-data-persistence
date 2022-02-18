@@ -17,12 +17,13 @@ async function getById(id) {
 async function add(resource) {
     const id = await db('resources')
         .insert(resource);
-    const result = getById([id]);
+    const result = await getById([id]);
     const added = {
-        resource_description: result.resource_description,
-        resource_id: result.resource_id,
-        resource_name: result.resource_name
+        resource_description: result[0].resource_description,
+        resource_id: result[0].resource_id,
+        resource_name: result[0].resource_name
     };
+    console.log(added);
     return added;
 }
 
