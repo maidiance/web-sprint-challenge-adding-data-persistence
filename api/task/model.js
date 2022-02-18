@@ -2,16 +2,28 @@
 // build your `Resource` model here
 const db = require('./../../data/dbConfig');
 
-function get() {
-    return db('tasks as t')
+async function get() {
+    const tasks = await db('tasks as t')
         .leftJoin('projects as p', 'p.project_id', 't.project_id');
+    const result = [];
+    tasks.forEach(task => {
+        result.push({
+            ...task,
+            task_completed: task.task_completed ? true : false
+        })
+    });
+    return result;
 }
 
 async function getById(id) {
-    const result = await db('tasks')
+    const task = await db('tasks')
         .where('task_id', id);
-    if(result.length < 1) {
+    if(task.length < 1) {
         return null;
+    }
+    const result = {
+        ...task[0],
+        task_completed: task[0].task_completed ? true: false
     }
     return result;
 }
