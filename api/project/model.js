@@ -2,9 +2,27 @@
 const db = require('../data/db-config');
 
 function get() {
-    return db('projects as p');
+    return db('projects');
+}
+
+async function getById(id) {
+    const result = await db('projects')
+        .where('project_id', id);
+    if(result.length < 1) {
+        return null;
+    }
+    return result;
+}
+
+function add(project) {
+    return db('projects')
+        .insert(project)
+        .then(([id]) => {
+            return getById(id);
+        })
 }
 
 module.exports = {
-    get
+    get,
+    add
 };
