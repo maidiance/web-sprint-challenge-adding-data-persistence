@@ -14,12 +14,16 @@ async function getById(id) {
     return result;
 }
 
-function add(resource) {
-    return db('resources')
-        .insert(resource)
-        .then(([id]) => {
-            return getById(id);
-        })
+async function add(resource) {
+    const id = await db('resources')
+        .insert(resource);
+    const result = getById([id]);
+    const added = {
+        resource_description: result.resource_description,
+        resource_id: result.resource_id,
+        resource_name: result.resource_name
+    };
+    return added;
 }
 
 module.exports = {
