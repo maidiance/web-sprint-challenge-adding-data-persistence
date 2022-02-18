@@ -17,8 +17,8 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
     const project = req.body;
     Projects.add(project)
-        .then(project => {
-            res.status(201).json(project);
+        .then(posted => {
+            res.status(201).json(posted);
         })
         .catch(() => {
             res.status(500).json({message: 'could not post project'});
