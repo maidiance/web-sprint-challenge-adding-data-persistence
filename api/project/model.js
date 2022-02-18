@@ -8,7 +8,7 @@ async function get() {
     projects.forEach(project => {
         result.push({
             ...project,
-            project_completed: project.project_completed ? 'true' : 'false'
+            project_completed: project.project_completed ? true : false
         })
     })
     return result;
