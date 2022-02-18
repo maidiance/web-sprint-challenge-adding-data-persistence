@@ -3,7 +3,8 @@
 const db = require('../data/db-config');
 
 function get() {
-    return db('tasks');
+    return db('tasks as t')
+        .leftJoin('projects as p', 'p.project_id', 't.project_id')
 }
 
 async function getById(id) {
