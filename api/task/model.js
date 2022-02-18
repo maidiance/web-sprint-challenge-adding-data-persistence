@@ -1,6 +1,6 @@
 // build your `Task` model here
 // build your `Resource` model here
-const db = require('../../data/db-config');
+const db = require('./../../data/dbConfig');
 
 function get() {
     return db('tasks as t')
